@@ -1,0 +1,54 @@
+Explicação Detalhada
+Inclusão das Bibliotecas:
+
+micro_ros_arduino.h: Biblioteca para comunicação com o Micro-ROS.
+Adafruit_PWMServoDriver.h: Biblioteca para controlar servos via PCA9685.
+ForwardKinematicsDH.h, Joint.h, InverseKinematics.h: Bibliotecas personalizadas para cálculo de cinemática.
+Eigen/Dense: Biblioteca para cálculos de álgebra linear.
+Declaração de Variáveis do Micro-ROS:
+
+Variáveis para suporte ao Micro-ROS, como publishers, timers, executores, etc.
+Definições de Pinos e Parâmetros:
+
+LED_PIN: Pino do i²C.
+SERVOMIN e SERVOMAX: Comprimentos mínimos e máximos do pulso para os servos.
+SERVO_1 a SERVO_5: Canais dos servos no PCA9685.
+STEPPER_DIR_PIN, STEPPER_STEP_PIN, STEPPER_ENABLE_PIN: Pinos do motor de passo.
+Instâncias de Drivers:
+
+pwm: Instância do driver PCA9685.
+stepper: Instância do driver do motor de passo.
+Macros para Verificação de Erros:
+
+RCCHECK e RCSOFTCHECK: Macros para verificar e tratar erros nas funções do Micro-ROS.
+Função pulseConverter:
+
+Converte um ângulo em um comprimento de pulso PWM baseado nos valores mínimos e máximos.
+Função error_loop:
+
+Loop infinito para indicar erro piscando o LED.
+Função timer_callback:
+
+Callback para o timer do Micro-ROS, incrementa e publica uma mensagem de tipo Int32.
+Função setup:
+
+Inicializa a comunicação serial, configura o Micro-ROS, inicializa o PCA9685, configura os pinos do motor de passo, e inicializa o suporte, nó, publisher e timer do Micro-ROS.
+Função loop:
+
+Verifica se há dados disponíveis na serial.
+Lê as coordenadas desejadas (x, y, z) do usuário.
+Atualiza a cinemática direta com as novas posições.
+Calcula e imprime a matriz do efetuador final.
+Calcula a cinemática inversa para obter os ângulos das juntas.
+Atualiza os ângulos dos servos com base nos ângulos calculados.
+Spin do executor do Micro-ROS para manter o nó funcional.
+Função setServoAngle:
+
+Converte os ângulos das juntas para pulsos PWM e envia para os servos.
+Esse código é uma base para controlar um manipulador robótico usando Micro-ROS e comunicação serial para definir as posições desejadas, com cálculo de cinemática direta e inversa para controlar os servos e o motor de passo.
+
+
+
+
+
+
